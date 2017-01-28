@@ -2,6 +2,10 @@
 ## functions do
 
 ## Write a short comment describing this function
+# 1. set the value of the matrix
+# 2. get the value of the matrix
+# 3. set the value of inverse of the matrix
+# 4. get the value of inverse of the matrix
 
 makeCacheMatrix <- function(x = matrix()) {
     inv <- NULL
@@ -14,10 +18,14 @@ makeCacheMatrix <- function(x = matrix()) {
     getinverse <- function() inv
     list(set=set, get=get, setinverse=setinverse, getinverse=getinverse)
 }
+# The following function returns the inverse of the matrix. It first checks if
+# the inverse has already been computed. If so, it gets the result and skips the
+# computation. If not, it computes the inverse, sets the value in the cache via
+# setinverse function.
 
 
 ## Write a short comment describing this function
-
+# This function assumes that the matrix is always invertible.
 cacheSolve <- function(x, ...) {
     inv <- x$getinverse()
     if(!is.null(inv)) {
@@ -29,3 +37,10 @@ cacheSolve <- function(x, ...) {
     x$setinverse(inv)
     inv
 }
+## Sample run:
+## > x = rbind(c(1, -1/4), c(-1/4, 1))
+## > m = makeCacheMatrix(x)
+## > m$get()
+##       [,1]  [,2]
+## [1,]  1.00 -0.25
+## [2,] -0.25  1.00
